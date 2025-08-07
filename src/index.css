@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/* 1. Color */
+/*----------------------------------------------*/
+@theme {
+    --color-accent:             #777777;
+    --color-black:              #151412;
+    --color-light-dark:         #36332F;
+    --color-gray:               #F3F3F3;
+    --color-gray-300:           #F7F7F7;
+    --color-gray-400:           #EFEFEF;
+    --color-gray-500:           #AEAEAE;
+    --color-gray-600:           #999999;
+    --color-gray-800:           #3A3A3A;
+    --color-light-gray:         #D7DDDF;
+    --color-primary:            #87826E;
+    --color-bs-primary-rgb:     #87826E;
+    --color-light:              #f8f9fa;
+    --color-dark:               #212529;
+    --color-light-blue:         #EDF1F3;
+    --color-navbar:             #131814;
+    --color-swiper-theme:       #4A4A4A;
+    --color-swiper-pagination:  #4A4A4A;
+}
+
+
+/* 2. Fonts */
+/*----------------------------------------------*/
+
+@theme {
+    --font-family-italiana: 'Italiana', serif;
+    --font-family-mulish: 'Mulish', sans-serif;
+}
+
+body {
+    font-family: var(--font-family-mulish);
+}
+
+
+.hero-slider .swiper-pagination-bullet {
+    @apply w-5 h-5 bg-gray-400 opacity-70 transition-opacity  duration-300 !mx-3 !mb-12;
+}
+
+.hero-slider .swiper-pagination-bullet-active {
+    @apply opacity-100 bg-black;
+}
+
+
