@@ -38,6 +38,8 @@ body {
 }
 
 
+/* 2. class swiper */
+/*----------------------------------------------*/
 .hero-slider .swiper-pagination-bullet {
     @apply w-5 h-5 bg-gray-400 opacity-70 transition-opacity  duration-300 !mx-3 !mb-12;
 }
@@ -47,3 +49,18 @@ body {
 }
 
 
+/* 3. class swiper */
+/*----------------------------------------------*/
+.product-swiper {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+/* 4. Container Sizes */
+/*----------------------------------------------*/
+@theme {
+    --max-width-8xl: 82rem;    /* برای max-w-8xl */
+}

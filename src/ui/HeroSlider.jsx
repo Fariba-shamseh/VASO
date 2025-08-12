@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import BaseLink from "./BaseLink.jsx";
 
 const slides = [
   {
@@ -52,14 +53,7 @@ export default function HeroSlider() {
                     <p className="font-light text-xl tracking-normal text-light-dark mb-6">
                       {slide.desc}
                     </p>
-                    <a
-                      href=""
-                      className="inline-block px-6 py-3  text-lg hover:text-accent transition"
-                    >
-                      <span className="relative underline underline-offset-10 decoration-2">
-                        Shop Now
-                      </span>
-                    </a>
+                    <BaseLink name={"Shop Now"} />
                   </div>
                 </div>
               </div>

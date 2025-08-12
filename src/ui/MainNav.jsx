@@ -52,9 +52,9 @@ const MainNav = () => {
       }`}
     >
       {/* منوی دسکتاپ */}
-      <div className="hidden md:flex items-center justify-between h-full px-6 max-w-7xl mx-auto">
+      <div className="hidden md:flex items-center justify-between h-full px-6 max-w-8xl mx-auto">
         {/* منوی سمت چپ (About, Shop, Pages) */}
-        <ul className="flex items-center space-x-8 text-dark font-medium text-lg">
+        <ul className="flex items-center space-x-12 text-dark font-medium text-lg ">
           {menuItems.slice(0, 3).map((item) => (
             <NavItem
               key={item.to}

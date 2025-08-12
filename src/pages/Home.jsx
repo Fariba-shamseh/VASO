@@ -1,13 +1,16 @@
 import HeroSlider from "../ui/HeroSlider.jsx";
 import AboutUs from "../ui/AboutUs.jsx";
+import Products from "../ui/Products.jsx";
+import TestimonialsSection from "../ui/Testimonials.jsx";
 
 const Home = () => {
   return (
     <div>
       <HeroSlider />
       <AboutUs />
-
-      <div className="bg-pink-300">
+      <Products />
+      <TestimonialsSection />
+      <div>
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
         از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
         سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای
