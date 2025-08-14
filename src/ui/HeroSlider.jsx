@@ -53,7 +53,7 @@ export default function HeroSlider() {
                     <p className="font-light text-xl tracking-normal text-light-dark mb-6">
                       {slide.desc}
                     </p>
-                    <BaseLink name={"Shop Now"} />
+                    <BaseLink name="Shop Now" />
                   </div>
                 </div>
               </div>

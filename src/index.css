@@ -58,8 +58,13 @@ body {
     padding-right: 0 !important;
 }
 
+/* 4. class  */
+/*----------------------------------------------*/
+.animate-slow {
+animation: spin 40s linear infinite;
+}
 
-/* 4. Container Sizes */
+/* 5. Container Sizes */
 /*----------------------------------------------*/
 @theme {
     --max-width-8xl: 82rem;    /* برای max-w-8xl */

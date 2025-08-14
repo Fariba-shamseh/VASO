@@ -15,12 +15,12 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
       <div className="text-center pt-3 pb-2">
-        <h5 className="text-2xl font-medium capitalize">
+        <h5 className="text-sm md:text-2xl lg:text-3xlg capitalize">
           <a href={product.link} className="hover:underline">
             {product.title}
           </a>
         </h5>
-        <span className="text-primary font-light text-xl">
+        <span className="text-primary font-light text-sm md:text-2xl lg:text-3lg">
           ${product.price}
         </span>
       </div>
