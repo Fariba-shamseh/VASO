@@ -3,6 +3,7 @@ import AboutUs from "../ui/AboutUs.jsx";
 import Products from "../ui/Products.jsx";
 import TestimonialsSection from "../ui/Testimonials.jsx";
 import OurVideoSection from "../ui/OurVideoSection.jsx";
+import FAQSection from "../ui/FAQSection.jsx";
 
 const Home = () => {
   return (
@@ -12,6 +13,8 @@ const Home = () => {
       <Products />
       <TestimonialsSection />
       <OurVideoSection />
+      <FAQSection />
+
       <div>
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
         از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و

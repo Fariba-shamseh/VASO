@@ -5,21 +5,13 @@ import {
   ChevronLeft,
   ChevronRight,
   Play,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
-
-//
-// <ArrowButton
-//
-
-//   backgroundImage="images/text-pattern.png"
-//   className="play-btn relative inline-block cursor-pointer"
-//   data-bs-target="#myModal"
-//   data-src="https://www.youtube.com/embed/W_tIumKa8VY"
-// />
 
 const ArrowButton = ({
   direction = "right", // "left" یا "right"
-  variant = "default", // "default" | "minimal" | "filled"
+  variant = "default", // "default" | "minimal" | "filled" | "chevronUD"
   iconType = "arrow", // "arrow" | "chevron" | "play"
   onClick,
   disabled = false,
@@ -36,6 +28,12 @@ const ArrowButton = ({
     chevron: {
       left: ChevronLeft,
       right: ChevronRight,
+      up: ChevronUp,
+      down: ChevronDown,
+    },
+    chevronUD: {
+      up: ChevronUp,
+      down: ChevronDown,
     },
     play: {
       left: Play, // جهت بی‌اثر
@@ -56,7 +54,9 @@ const ArrowButton = ({
         ? "p-2"
         : variant === "filled"
           ? `relative cursor-pointer w-60 h-60`
-          : "";
+          : variant === "chevronUpDown"
+            ? `relative cursor-pointer`
+            : "";
 
   return (
     <button
@@ -85,14 +85,24 @@ const ArrowButton = ({
       )}
 
       <Icon
-        size={variant === "default" ? 41 : variant === "filled" ? 30 : 40}
-        strokeWidth={2}
+        size={
+          variant === "default"
+            ? 41
+            : variant === "filled"
+              ? 30
+              : variant === "chevronUpDown"
+                ? 30
+                : 40
+        }
+        strokeWidth={1}
         className={`${
           variant === "default"
             ? "text-black group-hover:text-white group-hover:scale-110"
             : variant === "filled"
               ? "text-black group-hover:text-accent"
-              : "text-gray-600"
+              : variant === "chevronUpDown"
+                ? "text-black group-hover:text-accent"
+                : "text-gray-600"
         } transition-all duration-300`}
       />
     </button>
