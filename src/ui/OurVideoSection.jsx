@@ -1,58 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ArrowButton from "./ArrowButton.jsx";
 import { X } from "lucide-react";
 
 const OurVideoSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const parallaxRef = useRef(null);
 
   const openModal = () => {
     setIsModalOpen(true);
-    document.body.style.overflow = "hidden"; // Prevent background scroll
+    document.body.style.overflow = "hidden";
   };
   const closeModal = () => {
     setIsModalOpen(false);
     document.body.style.overflow = "auto";
   };
 
+  // Parallax effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!parallaxRef.current) return;
+      const rect = parallaxRef.current.getBoundingClientRect();
+      // سرعت تصویر بیشتر از اسکرول برای جلوه parallax
+      parallaxRef.current.style.transform = `translate3d(0, ${-rect.top * 0.3}px, 0)`;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // مقدار اولیه
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <section className="relative h-[678px] overflow-hidden">
-        {/* بک‌گراند تصویر */}
+        {/* لایه Parallax تصویر */}
         <div
-          className="absolute top-0 left-0 w-full h-full bg-center bg-cover"
+          ref={parallaxRef}
+          className="absolute top-0 left-0 w-full h-[678px] bg-center bg-cover pointer-events-none will-change-transform"
           style={{
             backgroundImage:
               'url("https://demo.templatesjungle.com/vaso/images/video-image.jpg")',
           }}
         ></div>
 
-        {/*/!* لایه پوششی برای افکت jarallax (اگر بخوای میشه انیمیشن اسکرول اضافه کرد) *!/*/}
-        {/*<div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10"></div>*/}
-
         {/* بخش ویدیو پلیر */}
         <div className="relative z-10 flex items-center justify-center h-full">
-          {/*<button*/}
-          {/*  data-src="https://www.youtube.com/embed/W_tIumKa8VY"*/}
-          {/*  data-bs-target="#myModal"*/}
-          {/*  className="play-btn relative inline-block cursor-pointer"*/}
-          {/*  onClick={openModal}*/}
-          {/*>*/}
-          {/*  <svg*/}
-          {/*    className="absolute top-0 bottom-0 left-0 right-0 m-auto"*/}
-          {/*    width={41}*/}
-          {/*    height={41}*/}
-          {/*    xmlns="http://www.w3.org/2000/svg"*/}
-          {/*    fill="currentColor"*/}
-          {/*    viewBox="0 0 24 24"*/}
-          {/*  >*/}
-          {/*    <use xlinkHref="#play" />*/}
-          {/*  </svg>*/}
-          {/*  <img*/}
-          {/*    src="images/text-pattern.png"*/}
-          {/*    alt="pattern"*/}
-          {/*    className="text-pattern"*/}
-          {/*  />*/}
-          {/*</button>*/}
           <ArrowButton
             onClick={openModal}
             backgroundImage="images/text-pattern.png"
@@ -68,9 +60,7 @@ const OurVideoSection = () => {
       {/* Video Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/40">
-          {/* Modal Content */}
           <div className="relative w-full max-w-4xl mx-4 pt-12 p-6 aspect-video bg-white overflow-hidden shadow-2xl">
-            {/* Close Button */}
             <button
               onClick={closeModal}
               className="absolute top-1 left-4 z-10 w-10 h-10 flex items-center justify-center"
@@ -90,8 +80,6 @@ const OurVideoSection = () => {
               allowFullScreen
             />
           </div>
-
-          {/* Click outside to close */}
           <div className="absolute inset-0 -z-10" onClick={closeModal} />
         </div>
       )}
