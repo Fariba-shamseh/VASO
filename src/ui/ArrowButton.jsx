@@ -4,75 +4,70 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Play,
   ChevronUp,
   ChevronDown,
+  Play,
 } from "lucide-react";
 
+// Mapping آیکن‌ها بر اساس type و direction
+const ICON_MAP = {
+  arrow: { left: ArrowLeft, right: ArrowRight },
+  chevron: {
+    left: ChevronLeft,
+    right: ChevronRight,
+    up: ChevronUp,
+    down: ChevronDown,
+  },
+  chevronUD: { up: ChevronUp, down: ChevronDown },
+  play: { left: Play, right: Play },
+};
+
+// Mapping سایز آیکن بر اساس variant
+const ICON_SIZE = {
+  default: 41,
+  filled: 30,
+  chevronUpDown: 30,
+  minimal: 40,
+};
+
+// Mapping کلاس رنگ و hover
+const ICON_COLOR = {
+  default: "text-black group-hover:text-white group-hover:scale-110",
+  filled: "text-black group-hover:text-accent",
+  chevronUpDown: "text-black group-hover:text-accent",
+  minimal: "text-gray-600",
+};
+
+// Mapping کلاس button بر اساس variant
+const BUTTON_VARIANT = {
+  default: "w-20 h-20 bg-white border border-black hover:bg-black",
+  minimal: "p-2",
+  filled: "relative cursor-pointer w-60 h-60",
+  chevronUpDown: "relative cursor-pointer",
+};
+
 const ArrowButton = ({
-  direction = "right", // "left" یا "right"
-  variant = "default", // "default" | "minimal" | "filled" | "chevronUD"
+  direction = "right", // "left" | "right" | "up" | "down"
+  variant = "default", // "default" | "minimal" | "filled" | "chevronUpDown"
   iconType = "arrow", // "arrow" | "chevron" | "play"
   onClick,
   disabled = false,
   backgroundImage,
   className = "",
-  ...restProps // اینجا همه data-* و بقیه پراپ‌ها رو می‌گیریم
+  ...restProps // data-* و سایر props
 }) => {
-  // مپینگ آیکن‌ها
-  const iconMap = {
-    arrow: {
-      left: ArrowLeft,
-      right: ArrowRight,
-    },
-    chevron: {
-      left: ChevronLeft,
-      right: ChevronRight,
-      up: ChevronUp,
-      down: ChevronDown,
-    },
-    chevronUD: {
-      up: ChevronUp,
-      down: ChevronDown,
-    },
-    play: {
-      left: Play, // جهت بی‌اثر
-      right: Play, // جهت بی‌اثر
-    },
-  };
-
-  const Icon = iconMap[iconType.toLowerCase()]?.[direction] || ArrowRight;
-
-  const baseClasses =
-    "group flex items-center justify-center rounded-full transition-all duration-300";
-
-  // کلاس‌های variant
-  const variantClasses =
-    variant === "default"
-      ? "w-20 h-20 bg-white border border-black hover:bg-black"
-      : variant === "minimal"
-        ? "p-2"
-        : variant === "filled"
-          ? `relative cursor-pointer w-60 h-60`
-          : variant === "chevronUpDown"
-            ? `relative cursor-pointer`
-            : "";
+  const Icon = ICON_MAP[iconType.toLowerCase()]?.[direction] || ArrowRight;
+  const size = ICON_SIZE[variant] || 40;
+  const colorClass = ICON_COLOR[variant] || "text-gray-600";
+  const variantClass = BUTTON_VARIANT[variant] || "";
 
   return (
     <button
-      className={`${baseClasses} ${variantClasses} ${className}`}
+      className={`group flex items-center justify-center rounded-full transition-all duration-300 ${variantClass} ${className}`}
       onClick={onClick}
       disabled={disabled}
-      // style={{
-      //   backgroundImage: backgroundImage
-      //     ? `url(${backgroundImage})`
-      //     : undefined,
-      //   backgroundSize: "cover",
-      //   backgroundPosition: "center",
-      // }}
-      {...restProps} // اینجا هر چی data-* بدی به دکمه اضافه میشه
+      {...restProps}
     >
-      {/* Background چرخان فقط برای filled variant */}
       {variant === "filled" && backgroundImage && (
         <div
           className="absolute inset-0 rounded-full animate-spin animate-slow"
@@ -85,25 +80,9 @@ const ArrowButton = ({
       )}
 
       <Icon
-        size={
-          variant === "default"
-            ? 41
-            : variant === "filled"
-              ? 30
-              : variant === "chevronUpDown"
-                ? 30
-                : 40
-        }
+        size={size}
         strokeWidth={1}
-        className={`${
-          variant === "default"
-            ? "text-black group-hover:text-white group-hover:scale-110"
-            : variant === "filled"
-              ? "text-black group-hover:text-accent"
-              : variant === "chevronUpDown"
-                ? "text-black group-hover:text-accent"
-                : "text-gray-600"
-        } transition-all duration-300`}
+        className={`transition-all duration-300 ${colorClass}`}
       />
     </button>
   );
